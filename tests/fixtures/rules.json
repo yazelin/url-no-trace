@@ -1,0 +1,6 @@
+{
+  "rules": [
+    "subscription_marker",
+    "utm_*"
+  ]
+}

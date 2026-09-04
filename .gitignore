@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+coverage/
+dist/
+node_modules/
+.output/

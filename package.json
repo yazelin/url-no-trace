@@ -1,0 +1,11 @@
+{
+  "name": "url-no-trace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first WebExtension for removing tracking parameters from shareable URLs.",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check background.js && node --check content.js && node --check main-world.js && node --check popup.js && node --check options.js && node --check shared/cleaner.js"
+  },
+  "license": "MIT"
+}

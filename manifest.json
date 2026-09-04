@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "無痕清理器｜Clean Trail",
+  "version": "0.1.0",
+  "description": "在本機移除網址追蹤參數，支援自訂規則、規則訂閱與右鍵複製無痕連結。",
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "alarms",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "網址無痕清理器",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main-world.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["shared/cleaner.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "copy-clean-url": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      },
+      "description": "複製目前分頁的無痕連結"
+    }
+  }
+}

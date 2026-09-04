@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Clean Trail test page</title>
+</head>
+<body>
+  <main>
+    <h1>Clean Trail test page</h1>
+    <p>This page is intentionally plain so the extension can be tested without a third-party site.</p>
+    <a id="tracking-link" href="/page.html?utm_source=link&keep=1">tracked link</a>
+    <button id="spa-button" type="button">push a tracked SPA URL</button>
+  </main>
+  <script>
+    document.querySelector('#spa-button').addEventListener('click', () => {
+      history.pushState({}, '', '/page.html?gclid=spa-test&keep=2#demo');
+    });
+  </script>
+</body>
+</html>

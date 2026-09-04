@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>網址無痕清理器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="panel">
+    <header class="brand-row">
+      <div class="mark" aria-hidden="true">CT</div>
+      <div>
+        <p class="kicker">CLEAN TRAIL</p>
+        <h1>網址無痕清理器</h1>
+      </div>
+      <span id="active-state" class="state-badge">啟用中</span>
+    </header>
+
+    <section id="unsupported" class="notice is-hidden" aria-live="polite">
+      <strong>這個頁面無法自動清理</strong>
+      <p>瀏覽器的內建頁面與部分特殊頁面不允許擴充功能注入程式。你仍可到設定頁管理規則。</p>
+    </section>
+
+    <section id="content" class="content-stack">
+      <div class="host-line">
+        <span class="dot"></span>
+        <span id="current-host">目前分頁</span>
+      </div>
+
+      <div class="url-card">
+        <div class="url-block">
+          <span class="label">目前網址</span>
+          <code id="original-url">讀取中…</code>
+        </div>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <div class="url-block clean-block">
+          <span class="label">乾淨網址</span>
+          <code id="clean-url">讀取中…</code>
+        </div>
+      </div>
+
+      <section id="removed-section" class="removed-section is-hidden">
+        <div class="section-heading">
+          <span>已移除的追蹤參數</span>
+          <span id="removed-count" class="count-badge">0</span>
+        </div>
+        <div id="removed-list" class="chip-list"></div>
+      </section>
+
+      <p id="result-note" class="result-note" aria-live="polite">正在檢查目前網址…</p>
+
+      <div class="action-grid">
+        <button id="copy-button" class="button button-primary" type="button">
+          <span aria-hidden="true">⧉</span> 複製乾淨連結
+        </button>
+        <button id="apply-button" class="button button-secondary" type="button">
+          套用到網址列
+        </button>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong id="whitelist-title">目前網域</strong>
+          <span id="whitelist-description">需要保留參數？加入白名單</span>
+        </div>
+        <button id="whitelist-button" class="text-button" type="button">加入白名單</button>
+      </div>
+
+      <label class="toggle-row" for="pause-toggle">
+        <span>
+          <strong>全域暫停清理</strong>
+          <small>暫停時不會修改任何網址</small>
+        </span>
+        <input id="pause-toggle" class="toggle-input" type="checkbox">
+        <span class="toggle-ui" aria-hidden="true"></span>
+      </label>
+
+      <a id="settings-link" class="settings-link" href="#">規則、訂閱與白名單設定 <span aria-hidden="true">↗</span></a>
+      <p class="privacy-note">清理在本機完成，不記錄瀏覽歷程。網址在頁面載入時可能已先送達網站；本工具主要整理分享與複製時的網址。</p>
+    </section>
+
+    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+  </main>
+  <script src="shared/cleaner.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

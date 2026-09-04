@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>網址無痕清理器｜設定</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="mark" aria-hidden="true">CT</div>
+        <div>
+          <p class="kicker">CLEAN TRAIL / SETTINGS</p>
+          <h1>規則與隱私設定</h1>
+          <p class="lede">所有清理都在你的瀏覽器本機完成。你可以讓規則跟著社群清單更新，也可以保留需要特殊參數的網站。</p>
+        </div>
+      </div>
+      <div class="header-status">
+        <span id="rule-summary">讀取中…</span>
+        <label class="switch-line" for="global-pause">
+          <span>全域暫停</span>
+          <input id="global-pause" type="checkbox">
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+      </div>
+    </header>
+
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+    <section class="card">
+      <div class="card-heading">
+        <div>
+          <p class="section-kicker">01 / CUSTOM RULES</p>
+          <h2>自訂清理規則</h2>
+        </div>
+        <span class="pill">本機套用</span>
+      </div>
+      <p class="section-copy">每條規則比對網址的參數名稱。可使用精確名稱、萬用字首，或正則表達式；網域欄位留白代表所有網站。</p>
+      <form id="rule-form" class="form-grid">
+        <label class="field field-pattern">
+          <span>規則</span>
+          <input id="rule-pattern" required maxlength="256" placeholder="例如 igsh、utm_* 或 /^mc_/i">
+        </label>
+        <label class="field">
+          <span>類型</span>
+          <select id="rule-kind">
+            <option value="auto">自動判斷</option>
+            <option value="exact">精確名稱</option>
+            <option value="prefix">萬用字首</option>
+            <option value="regex">正則表達式</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>限定網域（選填）</span>
+          <input id="rule-host" maxlength="253" placeholder="例如 shopee.tw">
+        </label>
+        <button class="button button-primary" type="submit">新增規則</button>
+      </form>
+      <div id="custom-rules" class="stack-list"></div>
+      <p id="custom-empty" class="empty-copy">還沒有自訂規則；上方的內建規則會持續生效。</p>
+    </section>
+
+    <section class="card">
+      <div class="card-heading">
+        <div>
+          <p class="section-kicker">02 / SUBSCRIPTIONS</p>
+          <h2>規則清單訂閱</h2>
+        </div>
+        <button id="sync-button" class="button button-quiet" type="button">立即同步全部</button>
+      </div>
+      <p class="section-copy">貼上提供 JSON 或純文字規則的 HTTP(S) 網址。只會下載規則資料並在本機解析，不會執行遠端程式碼；同步失敗會保留上一份有效版本。</p>
+      <form id="subscription-form" class="inline-form">
+        <label class="field grow">
+          <span class="visually-hidden">規則清單網址</span>
+          <input id="subscription-url" type="url" required maxlength="2048" placeholder="https://example.com/clean-tracking-rules.json">
+        </label>
+        <button class="button button-primary" type="submit">加入清單</button>
+      </form>
+      <div id="subscriptions" class="stack-list"></div>
+      <p id="subscription-empty" class="empty-copy">尚未訂閱外部規則清單。</p>
+    </section>
+
+    <section class="card">
+      <div class="card-heading">
+        <div>
+          <p class="section-kicker">03 / ALLOWLIST</p>
+          <h2>不清理的網域</h2>
+        </div>
+        <span class="pill pill-soft">安全例外</span>
+      </div>
+      <p class="section-copy">白名單會涵蓋該網域與子網域。網域採邊界比對，像 <code>notexample.com</code> 不會誤中 <code>example.com</code>。</p>
+      <form id="whitelist-form" class="inline-form">
+        <label class="field grow">
+          <span class="visually-hidden">網域</span>
+          <input id="whitelist-host" required maxlength="253" placeholder="例如 bank.example.tw">
+        </label>
+        <button class="button button-secondary" type="submit">加入白名單</button>
+      </form>
+      <div id="whitelist" class="tag-list"></div>
+      <p id="whitelist-empty" class="empty-copy">還沒有白名單網域。</p>
+    </section>
+
+    <section class="card caution-card">
+      <div class="card-heading">
+        <div>
+          <p class="section-kicker">04 / PRIVACY NOTES</p>
+          <h2>知道這幾件事</h2>
+        </div>
+      </div>
+      <ul class="note-list">
+        <li>網址列清理使用 <code>history.replaceState</code>，不重新載入頁面；但頁面載入前，網站可能已經收到原始網址。</li>
+        <li>本工具不記錄瀏覽歷程，也不把網址送到自己的伺服器。只有你明確加入的訂閱網址會被定期讀取。</li>
+        <li>未知參數預設保留，片段（<code>#</code> 後面的內容）也不修改，避免破壞網站功能或 SPA 狀態。</li>
+      </ul>
+    </section>
+
+    <footer class="footer-line">
+      <span>Clean Trail 0.1.0</span>
+      <button id="reset-button" class="danger-button" type="button">清除自訂設定</button>
+    </footer>
+  </main>
+  <script src="shared/cleaner.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
