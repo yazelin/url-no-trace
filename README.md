@@ -12,6 +12,7 @@
 - 自訂精確名稱、萬用字首（如 `utm_*`）或正則表達式規則。
 - 訂閱 JSON／純文字規則清單，也能解析常見的 ClearURLs `providers` 格式；同步失敗會保留上一份有效版本。
 - 連結右鍵選單複製清理後的 URL，不用先造訪連結。
+- 以 `Ctrl+Shift+Y`（macOS 為 `Command+Shift+Y`）快速複製目前分頁的無痕連結，也可在瀏覽器快捷鍵設定中改鍵。
 - 全域暫停與網域白名單；未知參數預設保留。
 - 所有清理、規則比對與設定資料都留在瀏覽器本機，沒有分析、登入或自有後端。
 
@@ -101,6 +102,19 @@ npm run check
 ```
 
 `npm test` 會測試 URL 清理、規則型別、正則驗證、白名單邊界、暫停、規則清單解析和 Manifest 檔案；`npm run check` 會檢查所有擴充功能 JavaScript 的語法。
+
+### Google Chrome E2E
+
+`npm run test:e2e` 會啟動獨立的 Google Chrome，從 `chrome://extensions` 以開發人員模式載入未封裝項目，再測試初始網址、SPA、設定頁、自訂與訂閱規則、暫停、白名單和快捷鍵剪貼簿。它不會使用 `--load-extension`，避免目前 Chrome 對命令列載入的限制。
+
+這條測試需要 Google Chrome、Xvfb、xdotool、xclip，以及測試用的 [filechooser-portal-mock](https://pypi.org/project/filechooser-portal-mock/)：
+
+```bash
+pip install filechooser-portal-mock
+FILECHOOSER_PORTAL_BIN="$(command -v filechooser-portal)" npm run test:e2e
+```
+
+E2E 是獨立測試，不會由 `npm test` 自動執行；沒有桌面測試依賴時，仍可執行前面的 Node 單元測試與語法檢查。
 
 ## 為什麼不是直接重複現有工具？
 

@@ -8,7 +8,8 @@
     "contextMenus",
     "alarms",
     "tabs",
-    "scripting"
+    "scripting",
+    "clipboardWrite"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -40,8 +41,8 @@
   "commands": {
     "copy-clean-url": {
       "suggested_key": {
-        "default": "Ctrl+Shift+L",
-        "mac": "Command+Shift+L"
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
       },
       "description": "複製目前分頁的無痕連結"
     }
