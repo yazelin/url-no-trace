@@ -10,6 +10,7 @@ importScripts('shared/cleaner.js');
   const SYNC_PERIOD_MINUTES = 360;
   const MAX_SUBSCRIPTION_BYTES = 512 * 1024;
   const MAX_SUBSCRIPTION_RULES = 2000;
+  let contextMenuPromise = null;
 
   function safeCall(task, fallback) {
     return Promise.resolve().then(task).catch(() => fallback);
@@ -36,12 +37,18 @@ importScripts('shared/cleaner.js');
 
   async function createContextMenu() {
     if (!ext.contextMenus) return;
-    await safeCall(() => ext.contextMenus.removeAll(), undefined);
-    await safeCall(() => ext.contextMenus.create({
-      id: MENU_ID,
-      title: '複製無痕連結',
-      contexts: ['link']
-    }), undefined);
+    if (contextMenuPromise) return contextMenuPromise;
+    contextMenuPromise = (async () => {
+      await ext.contextMenus.removeAll();
+      await ext.contextMenus.create({
+        id: MENU_ID,
+        title: '複製無痕連結',
+        contexts: ['link']
+      });
+    })().catch(() => {}).finally(() => {
+      contextMenuPromise = null;
+    });
+    return contextMenuPromise;
   }
 
   async function setBadge(tabId, count) {
