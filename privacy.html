@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Clean Trail 隱私政策：網址清理、規則設定與訂閱資料如何處理。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="隱私政策｜Clean Trail">
+  <meta property="og:description" content="清楚說明 Clean Trail 會處理什麼、不會做什麼，以及瀏覽器權限各自用來做什麼。">
+  <meta property="og:url" content="https://yazelin.github.io/url-no-trace/privacy.html">
+  <meta property="og:image" content="https://yazelin.github.io/url-no-trace/store-assets/promo-440x280.png">
+  <link rel="canonical" href="https://yazelin.github.io/url-no-trace/privacy.html">
+  <title>隱私政策｜Clean Trail</title>
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="privacy.css">
+</head>
+<body class="policy-page">
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-nav">
+    <a class="brand" href="./" aria-label="回到 Clean Trail 首頁">
+      <span class="brand-mark" aria-hidden="true">CT</span>
+      <span>Clean Trail</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">選單</button>
+    <nav id="main-nav" class="main-nav" aria-label="主要導覽">
+      <a href="./#features">功能</a>
+      <a href="./#how">怎麼工作</a>
+      <a href="./#privacy">隱私邊界</a>
+      <a class="nav-cta" href="./#install">開始使用 <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main class="policy-main section-shell">
+    <div class="policy-hero">
+      <p class="eyebrow">PRIVACY POLICY / CLEAN TRAIL</p>
+      <h1>把資料邊界，<br><span>寫得和功能一樣清楚。</span></h1>
+      <p>這份政策說明「無痕清理器｜Clean Trail」如何處理網址、規則、訂閱與剪貼簿。核心原則很簡單：清理工作在你的瀏覽器裡完成，Clean Trail 不建立你的瀏覽紀錄。</p>
+      <span class="policy-meta">最後更新：<time datetime="2026-09-05">2026 年 9 月 5 日</time></span>
+    </div>
+
+    <div class="policy-layout">
+      <nav class="policy-toc" aria-label="政策章節">
+        <span>ON THIS PAGE</span>
+        <a href="#scope">適用範圍</a>
+        <a href="#data">處理哪些資料</a>
+        <a href="#permissions">瀏覽器權限</a>
+        <a href="#subscriptions">外部訂閱清單</a>
+        <a href="#retention">保存與刪除</a>
+        <a href="#limits">功能邊界</a>
+        <a href="#contact">聯絡方式</a>
+      </nav>
+
+      <article class="policy-card">
+        <section id="scope" class="policy-section">
+          <h2>適用範圍</h2>
+          <p>本政策適用於 Clean Trail 瀏覽器擴充功能、其公開原始碼，以及本專案的 GitHub Pages 產品介紹頁。Clean Trail 是一個開源、沒有帳號系統的本機優先工具。</p>
+          <p>使用這個擴充功能代表你了解：它會為了清理網址而讀取目前頁面的 URL，但不會把目前 URL 傳給 Clean Trail 的自有伺服器。</p>
+        </section>
+
+        <section id="data" class="policy-section">
+          <h2>我們處理哪些資料</h2>
+          <p>「處理」是指在你的瀏覽器中讀取、比對或保存必要資料；這不等於收集到我們的伺服器。Clean Trail 不收集、出售或分享你的瀏覽資料。</p>
+          <div class="policy-data-grid">
+            <div class="policy-data-item"><strong>目前網址</strong><span>只在本機用來移除已知追蹤參數、更新網址列或產生複製預覽。</span></div>
+            <div class="policy-data-item"><strong>本機設定</strong><span>自訂規則、白名單、暫停狀態與訂閱狀態保存在瀏覽器的 chrome.storage.local。</span></div>
+            <div class="policy-data-item"><strong>剪貼簿</strong><span>只有你按下複製按鈕、右鍵複製或使用快捷鍵時，才會寫入清理後的網址。</span></div>
+            <div class="policy-data-item"><strong>同步結果</strong><span>外部清單的規則與同步時間保存在本機，用來顯示狀態和保留上一份有效版本。</span></div>
+          </div>
+          <h3>我們不會做什麼</h3>
+          <ul>
+            <li>不建立或上傳你的瀏覽歷程、搜尋紀錄、目前分頁清單或 URL 歷史。</li>
+            <li>不使用分析工具、廣告追蹤、登入、個人化剖析或自有遙測後端。</li>
+            <li>不把遠端訂閱內容當成程式執行，不使用 <code>eval</code>、<code>new Function</code> 或遠端 script 注入。</li>
+          </ul>
+        </section>
+
+        <section id="permissions" class="policy-section">
+          <h2>瀏覽器權限為什麼存在</h2>
+          <p>以下是 Manifest V3 中每一項權限的實際用途。權限是為了完成使用者看得到的功能，不代表 Clean Trail 會把資料傳出。</p>
+          <dl class="permission-list">
+            <div class="permission-row"><dt>storage</dt><dd>保存內建規則以外的自訂規則、白名單、暫停狀態與訂閱快取。</dd></div>
+            <div class="permission-row"><dt>contextMenus</dt><dd>在連結的右鍵選單提供「複製無痕連結」。</dd></div>
+            <div class="permission-row"><dt>alarms</dt><dd>每六小時觸發一次使用者已加入的規則清單同步。</dd></div>
+            <div class="permission-row"><dt>tabs</dt><dd>取得目前分頁 URL，供 Popup、快捷鍵與右鍵複製功能使用。</dd></div>
+            <div class="permission-row"><dt>scripting</dt><dd>在部分頁面無法使用一般內容腳本時，提供使用者主動要求的複製 fallback。</dd></div>
+            <div class="permission-row"><dt>clipboardWrite</dt><dd>在使用者明確要求複製時，把清理後的 URL 寫入系統剪貼簿。</dd></div>
+            <div class="permission-row"><dt>&lt;all_urls&gt;</dt><dd>讓同一套清理規則能在不同網站的頁面 URL 上運作；特殊的 chrome://、edge:// 和擴充功能頁仍受瀏覽器限制。</dd></div>
+          </dl>
+        </section>
+
+        <section id="subscriptions" class="policy-section">
+          <h2>外部訂閱清單</h2>
+          <p>訂閱不是預設開啟的功能。只有你在設定頁明確加入 HTTP(S) 規則網址後，Clean Trail 才會向該網址發出請求，讀取 JSON 或純文字規則；同步失敗時會保留上一份有效資料。</p>
+          <div class="policy-callout">
+            <p>外部網站可以看到來自你的瀏覽器請求，並依照它自己的隱私政策記錄請求。這是訂閱來源的網路行為，不是 Clean Trail 上傳目前瀏覽網址。若不希望有這個連線，請不要加入該訂閱網址，或在設定頁移除它。</p>
+          </div>
+        </section>
+
+        <section id="retention" class="policy-section">
+          <h2>保存與刪除</h2>
+          <p>本機設定會保留到你在設定頁按下「清除自訂設定」、移除相關項目、清除瀏覽器擴充功能資料，或解除安裝 Clean Trail。Clean Trail 沒有遠端帳號，因此沒有由我們代為保存的使用者資料。</p>
+          <p>解除安裝後，瀏覽器可能依自身機制處理擴充功能資料；若要在解除安裝前清除，可先從設定頁執行清除。</p>
+        </section>
+
+        <section id="limits" class="policy-section">
+          <h2>功能邊界</h2>
+          <p>Clean Trail 主要改善網址分享、複製與網址列曝光。它在頁面載入後使用 <code>history.replaceState</code> 整理網址，不重新載入頁面，因此不能撤回網站在初始請求時可能已經收到的原始 URL。</p>
+          <p>未知參數、網址路徑與 <code>#</code> 片段預設保留，以降低破壞網站功能的風險。這不是網路層防追蹤器，也不宣稱能取代完整的內容或請求阻擋工具。</p>
+        </section>
+
+        <section id="contact" class="policy-section">
+          <h2>聯絡方式與政策變更</h2>
+          <p>如果你發現隱私或安全問題，請到 <a href="https://github.com/yazelin/url-no-trace/issues">GitHub Issues</a> 提供可公開討論的描述；也可以在 <a href="https://github.com/yazelin/url-no-trace">專案首頁</a> 查看原始碼、測試與版本變更。</p>
+          <p>若功能、資料處理方式或權限用途有實質變更，我們會更新這個頁面的日期與內容。最新版本的政策固定位於：</p>
+          <p><a href="https://yazelin.github.io/url-no-trace/privacy.html">https://yazelin.github.io/url-no-trace/privacy.html</a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">CT</span><span>Clean Trail</span></a>
+    <p>一條網址的乾淨旅程，從你的瀏覽器開始。</p>
+    <div class="footer-links"><a href="https://github.com/yazelin/url-no-trace" target="_blank" rel="noreferrer">GitHub</a><a href="privacy.html">隱私政策</a><a href="./#install">開始使用</a></div>
+    <div class="footer-bottom"><span>Open source · MIT License</span><span>© <span id="current-year">2026</span> Clean Trail</span></div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

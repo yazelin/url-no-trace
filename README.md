@@ -26,6 +26,22 @@
 
 也可以在 Firefox 的 `about:debugging#/runtime/this-firefox` 載入同一份目錄測試。核心邏輯使用標準 WebExtension API；瀏覽器對剪貼簿與特殊頁面的限制仍可能不同。
 
+## Chrome Web Store 準備
+
+上架所需的公開說明、權限用途與審查步驟整理在 [`docs/chrome-web-store-listing.md`](docs/chrome-web-store-listing.md)。隱私政策已發布在 [GitHub Pages](https://yazelin.github.io/url-no-trace/privacy.html)。
+
+商店套件使用明確的檔案清單打包，確保 `manifest.json` 位於 ZIP 根目錄：
+
+```bash
+npm run package
+```
+
+輸出會放在 `dist/clean-trail-v0.1.0.zip`。商店圖示、宣傳圖與產品截圖分別在 `assets/` 和 `store-assets/`；產品截圖可用下列指令由實際 Google Chrome E2E 流程重新產生：
+
+```bash
+STORE_SCREENSHOT_DIR=store-assets FILECHOOSER_PORTAL_BIN="$(command -v filechooser-portal)" npm run test:e2e
+```
+
 ## 規則格式
 
 設定頁可新增三種規則：
@@ -87,9 +103,11 @@ background.js       右鍵選單、訂閱同步、排程與 badge
 content.js          history API 監看、網址列整理與頁面剪貼簿 fallback
 popup.*             目前分頁的預覽、複製、白名單與暫停
 options.*           自訂規則、規則訂閱、白名單管理
+privacy.html、privacy.css 公開隱私政策頁
+assets/、store-assets/ Chrome Web Store 圖示、宣傳圖與實際產品截圖
 shared/cleaner.js   無依賴的規則引擎與 URL 清理器
 tests/              Node 內建測試
-docs/               願望規格與市調交接紀錄
+docs/               願望規格、市調交接紀錄與商店上架草稿
 ```
 
 ## 開發與測試
@@ -99,9 +117,10 @@ docs/               願望規格與市調交接紀錄
 ```bash
 npm test
 npm run check
+npm run package
 ```
 
-`npm test` 會測試 URL 清理、規則型別、正則驗證、白名單邊界、暫停、規則清單解析和 Manifest 檔案；`npm run check` 會檢查所有擴充功能 JavaScript 的語法。
+`npm test` 會測試 URL 清理、規則型別、正則驗證、白名單邊界、暫停、規則清單解析和 Manifest 檔案；`npm run check` 會檢查所有擴充功能 JavaScript 的語法；`npm run package` 會建立可上傳的 Chrome Web Store ZIP。
 
 ### Google Chrome E2E
 

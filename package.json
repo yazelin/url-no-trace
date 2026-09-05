@@ -5,8 +5,9 @@
   "description": "Local-first WebExtension for removing tracking parameters from shareable URLs.",
   "scripts": {
     "test": "node --test tests/cleaner.test.js tests/manifest.test.js",
-    "check": "node --check background.js && node --check content.js && node --check main-world.js && node --check popup.js && node --check options.js && node --check shared/cleaner.js",
-    "test:e2e": "node --test tests/e2e/chrome.e2e.test.mjs"
+    "check": "node --check background.js && node --check content.js && node --check main-world.js && node --check popup.js && node --check options.js && node --check shared/cleaner.js && node --check site.js && node --check scripts/package-extension.mjs",
+    "test:e2e": "node --test tests/e2e/chrome.e2e.test.mjs",
+    "package": "node scripts/package-extension.mjs"
   },
   "license": "MIT"
 }

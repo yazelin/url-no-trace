@@ -57,27 +57,33 @@
     window.setTimeout(() => { copyButton.textContent = '複製乾淨網址'; }, 1800);
   }
 
-  cleanButton.addEventListener('click', () => {
-    isCleaned = !isCleaned;
-    renderDemo();
-  });
-  copyButton.addEventListener('click', () => copyDemoUrl());
-
-  menuToggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(open));
-  });
-
-  nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
+  if (cleanButton && cleanLabel && demoAddress && demoAfter && demoStatus && removedChips && copyButton) {
+    cleanButton.addEventListener('click', () => {
+      isCleaned = !isCleaned;
+      renderDemo();
     });
-  });
+    copyButton.addEventListener('click', () => copyDemoUrl());
+  }
 
-  window.addEventListener('scroll', () => {
-    navBar.classList.toggle('is-scrolled', window.scrollY > 12);
-  }, { passive: true });
+  if (nav && menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  if (navBar) {
+    window.addEventListener('scroll', () => {
+      navBar.classList.toggle('is-scrolled', window.scrollY > 12);
+    }, { passive: true });
+  }
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -95,5 +101,7 @@
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
-  renderDemo();
+  if (cleanButton && cleanLabel && demoAddress && demoAfter && demoStatus && removedChips && copyButton) {
+    renderDemo();
+  }
 })();

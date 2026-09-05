@@ -3,7 +3,7 @@ import { createServer } from 'node:http';
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { createConnection } from 'node:net';
@@ -547,6 +547,29 @@ async function navigate(cdp, url) {
   await waitForValue(() => cdp.evaluate('location.href'), (value) => value === url, `網址 ${url}`, 10000);
 }
 
+async function captureStoreScreenshot(cdp, filename) {
+  const configuredDirectory = process.env.STORE_SCREENSHOT_DIR;
+  if (!configuredDirectory) return null;
+  const directory = path.isAbsolute(configuredDirectory)
+    ? configuredDirectory
+    : path.join(REPO_ROOT, configuredDirectory);
+  await mkdir(directory, { recursive: true });
+  await cdp.send('Emulation.setDeviceMetricsOverride', {
+    width: 1280,
+    height: 800,
+    deviceScaleFactor: 1,
+    mobile: false
+  });
+  try {
+    const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', fromSurface: true });
+    const outputPath = path.join(directory, filename);
+    await writeFile(outputPath, Buffer.from(screenshot.data, 'base64'));
+    return outputPath;
+  } finally {
+    await cdp.send('Emulation.clearDeviceMetricsOverride');
+  }
+}
+
 async function submitForm(cdp, selector, values) {
   const serialized = JSON.stringify(values);
   const expression = `(() => {
@@ -643,6 +666,7 @@ test('Google Chrome E2E：載入、清理、設定與快捷鍵', { timeout: 1200
 
     await navigate(cdp, `chrome-extension://${extensionId}/options.html`);
     await waitForValue(() => cdp.evaluate('document.querySelector("#rule-summary")?.textContent'), (value) => value && !value.includes('讀取中'), '設定頁初始化');
+    const storeScreenshot = await captureStoreScreenshot(cdp, 'options-1280x800.png');
     await submitForm(cdp, '#rule-form', {
       '#rule-pattern': 'chrome_e2e_marker',
       '#rule-kind': 'exact'
@@ -724,6 +748,7 @@ test('Google Chrome E2E：載入、清理、設定與快捷鍵', { timeout: 1200
       paused: pausedUrl,
       whitelisted: whitelistedUrl,
       shortcut: clipboard,
+      storeScreenshot,
       extensionError: finalCard.hasError
     }, null, 2));
   } finally {

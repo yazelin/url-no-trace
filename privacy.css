@@ -1,0 +1,235 @@
+.policy-page {
+  min-height: 100vh;
+}
+
+.policy-main {
+  padding-top: 148px;
+  padding-bottom: 110px;
+}
+
+.policy-hero {
+  max-width: 760px;
+  margin-bottom: 54px;
+}
+
+.policy-hero h1 {
+  max-width: 680px;
+  margin: 15px 0 18px;
+  color: #f3f8fc;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.04;
+}
+
+.policy-hero p {
+  max-width: 650px;
+  margin: 0;
+  color: #9caec1;
+  font-size: 16px;
+}
+
+.policy-layout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: start;
+  gap: 42px;
+}
+
+.policy-toc {
+  position: sticky;
+  top: 105px;
+  display: grid;
+  gap: 8px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(156, 174, 193, .18);
+  border-bottom: 1px solid rgba(156, 174, 193, .18);
+}
+
+.policy-toc span {
+  color: #5e778f;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .16em;
+}
+
+.policy-toc a {
+  color: #b8c9d8;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.policy-toc a:hover,
+.policy-card a:hover {
+  color: #72e4c0;
+}
+
+.policy-card {
+  padding: 38px 42px;
+  border: 1px solid rgba(156, 174, 193, .18);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(17, 35, 53, .94), rgba(8, 20, 34, .96));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .18);
+}
+
+.policy-section + .policy-section {
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(156, 174, 193, .14);
+}
+
+.policy-section h2 {
+  margin: 0 0 14px;
+  color: #f3f8fc;
+  font-size: 25px;
+}
+
+.policy-section h3 {
+  margin: 24px 0 8px;
+  color: #d8e6ef;
+  font-size: 15px;
+}
+
+.policy-section p,
+.policy-section li {
+  color: #a9bbc9;
+  font-size: 14px;
+}
+
+.policy-section p {
+  margin: 0 0 12px;
+}
+
+.policy-section ul {
+  display: grid;
+  gap: 9px;
+  margin: 12px 0 0;
+  padding-left: 21px;
+}
+
+.policy-section a {
+  color: #85dcf4;
+  text-decoration: underline;
+  text-decoration-color: rgba(133, 220, 244, .35);
+  text-underline-offset: 3px;
+}
+
+.policy-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: #6f879d;
+  font-size: 12px;
+}
+
+.policy-meta::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #72e4c0;
+  content: "";
+  box-shadow: 0 0 0 5px rgba(114, 228, 192, .09);
+}
+
+.policy-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 18px;
+}
+
+.policy-data-item {
+  padding: 15px;
+  border: 1px solid rgba(156, 174, 193, .14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .035);
+}
+
+.policy-data-item strong,
+.policy-data-item span {
+  display: block;
+}
+
+.policy-data-item strong {
+  margin-bottom: 4px;
+  color: #e5f7f1;
+  font-size: 13px;
+}
+
+.policy-data-item span {
+  color: #8fa6b8;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.permission-list {
+  display: grid;
+  margin: 18px 0 0;
+  border-top: 1px solid rgba(156, 174, 193, .14);
+}
+
+.permission-row {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(156, 174, 193, .1);
+}
+
+.permission-row dt {
+  color: #85dcf4;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow-wrap: anywhere;
+}
+
+.permission-row dd {
+  margin: 0;
+  color: #a9bbc9;
+  font-size: 13px;
+}
+
+.policy-callout {
+  margin-top: 18px;
+  padding: 17px 18px;
+  border-left: 3px solid #72e4c0;
+  border-radius: 0 12px 12px 0;
+  background: rgba(114, 228, 192, .07);
+}
+
+.policy-callout p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .policy-main {
+    padding-top: 116px;
+  }
+
+  .policy-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .policy-toc {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .policy-toc span {
+    grid-column: 1 / -1;
+  }
+
+  .policy-card {
+    padding: 28px 23px;
+  }
+}
+
+@media (max-width: 520px) {
+  .policy-data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .permission-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

@@ -3,6 +3,13 @@
   "name": "無痕清理器｜Clean Trail",
   "version": "0.1.0",
   "description": "在本機移除網址追蹤參數，支援自訂規則、規則訂閱與右鍵複製無痕連結。",
+  "homepage_url": "https://yazelin.github.io/url-no-trace/",
+  "icons": {
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
   "permissions": [
     "storage",
     "contextMenus",

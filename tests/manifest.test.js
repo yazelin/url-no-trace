@@ -14,4 +14,8 @@ test('manifest points only to local extension files', () => {
   ];
   for (const file of files) assert.equal(fs.existsSync(path.join(root, file)), true, file);
   assert.equal(manifest.host_permissions.includes('<all_urls>'), true);
+  assert.deepEqual(Object.keys(manifest.icons).sort(), ['128', '16', '32', '48']);
+  for (const file of Object.values(manifest.icons)) {
+    assert.equal(fs.existsSync(path.join(root, file)), true, file);
+  }
 });
