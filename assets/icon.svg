@@ -9,8 +9,10 @@
       <stop offset="1" stop-color="#72e4c0"/>
     </linearGradient>
   </defs>
-  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#surface)" stroke="#24465e" stroke-width="2"/>
-  <path d="M75 40a27 27 0 1 0 0 48" stroke="#72e4c0" stroke-width="9" stroke-linecap="round"/>
-  <path d="M54 48h38M73 48v39" stroke="url(#trail)" stroke-width="9" stroke-linecap="round"/>
-  <circle cx="96" cy="88" r="5" fill="#85dcf4"/>
+  <g transform="translate(6.0377358 6.0377358) scale(0.9056604)">
+    <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#surface)" stroke="#24465e" stroke-width="2"/>
+    <path d="M75 40a27 27 0 1 0 0 48" stroke="#72e4c0" stroke-width="9" stroke-linecap="round"/>
+    <path d="M54 48h38M73 48v39" stroke="url(#trail)" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="96" cy="88" r="5" fill="#85dcf4"/>
+  </g>
 </svg>
