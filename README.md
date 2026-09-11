@@ -1,5 +1,8 @@
 # 無痕清理器｜Clean Trail
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Clean_Trail-blue?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/%E7%84%A1%E7%97%95%E6%B8%85%E7%90%86%E5%99%A8%EF%BD%9Cclean-trail/goahbbfmfjfmlkngodpocghpjofjbolf?hl=zh-TW)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 一個本機優先的 Manifest V3 WebExtension：自動移除網址中的追蹤參數，讓分享與複製出去的連結更乾淨。它支援台灣／亞洲常見情境、自訂規則、遠端規則清單訂閱、網域白名單，以及連結右鍵「複製無痕連結」。
 
 這是 AI 願望池 #44「網址無痕清理器」的實作版本。
@@ -16,7 +19,13 @@
 - 全域暫停與網域白名單；未知參數預設保留。
 - 所有清理、規則比對與設定資料都留在瀏覽器本機，沒有分析、登入或自有後端。
 
-## 安裝（Chrome／Edge）
+## 安裝
+
+### 方式一：Chrome 線上應用程式商店（推薦）
+
+直接前往 [Chrome Web Store — 無痕清理器｜Clean Trail](https://chromewebstore.google.com/detail/%E7%84%A1%E7%97%95%E6%B8%85%E7%90%86%E5%99%A8%EF%BD%9Cclean-trail/goahbbfmfjfmlkngodpocghpjofjbolf?hl=zh-TW) 點擊「加到 Chrome」即可完成安裝（支援 Google Chrome、Microsoft Edge 等 Chromium 核心瀏覽器）。
+
+### 方式二：本機手動載入（開發人員 / Edge / Firefox）
 
 1. 下載或 clone 這個 repo。
 2. 開啟 `chrome://extensions` 或 Edge 的 `edge://extensions`。
@@ -26,7 +35,9 @@
 
 也可以在 Firefox 的 `about:debugging#/runtime/this-firefox` 載入同一份目錄測試。核心邏輯使用標準 WebExtension API；瀏覽器對剪貼簿與特殊頁面的限制仍可能不同。
 
-## Chrome Web Store 準備
+## Chrome Web Store
+
+擴充功能已通過 Google 審查並正式上架：[無痕清理器｜Clean Trail](https://chromewebstore.google.com/detail/%E7%84%A1%E7%97%95%E6%B8%85%E7%90%86%E5%99%A8%EF%BD%9Cclean-trail/goahbbfmfjfmlkngodpocghpjofjbolf?hl=zh-TW)。
 
 上架所需的公開說明、權限用途與審查步驟整理在 [`docs/chrome-web-store-listing.md`](docs/chrome-web-store-listing.md)。隱私政策已發布在 [GitHub Pages](https://yazelin.github.io/url-no-trace/privacy.html)。
 
